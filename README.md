@@ -2,9 +2,9 @@
 
 ## Members
 
-Victor Milu - 51917
-Igor Cardoso - 25995
-Caio Pereira - 79630
+Victor Milu - 51917.
+Igor Cardoso - 25995.
+Caio Pereira - 79630.
 
 
 ### Introduction
