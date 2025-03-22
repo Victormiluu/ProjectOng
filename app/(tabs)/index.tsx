@@ -8,7 +8,7 @@ export default function HomeScreen() {
       <Image
         source={require('@/assets/images/autism-logo.png')}
       />
-      <Text style={styles.textHeaderStyle}>Welcome to my app about autism ONG</Text>
+      <Text style={styles.textHeaderStyle}>Welcome to my app</Text>
     </View>
   );
 }
