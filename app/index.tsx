@@ -1,5 +1,3 @@
-"use client"
-
 import {
   View,
   Text,
@@ -25,7 +23,6 @@ export default function AnimalShelterScreen({ navigation }: any) {
   const slideAnim = useRef(new Animated.Value(DRAWER_WIDTH)).current
   const fadeAnim = useRef(new Animated.Value(0)).current
 
-  // Handle back button press to close drawer
   useEffect(() => {
     const backAction = () => {
       if (menuVisible) {
@@ -79,9 +76,6 @@ export default function AnimalShelterScreen({ navigation }: any) {
 
   const navigateTo = (screen: string) => {
     closeDrawer()
-    // This would use your navigation system to navigate to the specified screen
-    // For example, if using React Navigation:
-    // navigation.navigate(screen)
     console.log(`Navigating to: ${screen}`)
   }
 
