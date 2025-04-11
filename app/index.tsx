@@ -14,7 +14,7 @@ import {
 } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import { useState, useRef, useEffect } from "react"
-
+import { Platform } from "react-native"
 const { width } = Dimensions.get("window")
 const DRAWER_WIDTH = width * 0.7
 
@@ -74,10 +74,14 @@ export default function AnimalShelterScreen({ navigation }: any) {
     Linking.openURL(url).catch((err) => console.error("Error opening link:", err))
   }
 
-  const navigateTo = (screen: string) => {
-    closeDrawer()
-    console.log(`Navigating to: ${screen}`)
+const navigateTo = (screen: string) => {
+  closeDrawer();
+  if (navigation) { 
+    navigation.navigate(screen);
+  } else {
+    console.error("Navigation prop is undefined");
   }
+};
 
   return (
     <SafeAreaView style={styles.container}>
@@ -100,7 +104,7 @@ export default function AnimalShelterScreen({ navigation }: any) {
 
       {/* Drawer Navigation */}
       {menuVisible && (
-        <View style={StyleSheet.absoluteFill}>
+       <View style={[StyleSheet.absoluteFill, styles.drawerWrapper]}>
           <Animated.View style={[styles.modalOverlay, { opacity: fadeAnim }]}>
             <TouchableOpacity style={StyleSheet.absoluteFill} activeOpacity={1} onPress={closeDrawer} />
           </Animated.View>
@@ -118,12 +122,16 @@ export default function AnimalShelterScreen({ navigation }: any) {
                 <Text style={styles.menuItemText}>Página Inicial</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.menuItem} onPress={() => navigateTo("Adopt")}>
+              <TouchableOpacity style={styles.menuItem} onPress={() => navigateTo("Adote")}>
                 <Text style={styles.menuItemText}>Adote Conosco</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.menuItem} onPress={() => navigateTo("Volunteer")}>
                 <Text style={styles.menuItemText}>Voluntariar-se</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.menuItem} onPress={() => navigateTo("Events")}>
+                <Text style={styles.menuItemText}>Eventos</Text>
               </TouchableOpacity>
             </View>
           </Animated.View>
@@ -242,7 +250,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
-    zIndex: 10,
+    zIndex: 100,
   },
   headerLogo: {
     width: 50,
@@ -282,10 +290,18 @@ const styles = StyleSheet.create({
     borderRadius: 1,
   },
   // Drawer Menu Styles
+  drawerWrapper: {
+    zIndex: 9999,
+    ...Platform.select({
+      web: {
+        position: 'fixed',
+      },
+    }),
+  },
   modalOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-    zIndex: 1000,
+    zIndex: 9998,
   },
   drawerContainer: {
     width: DRAWER_WIDTH,
@@ -300,14 +316,19 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 5,
     elevation: 10,
-    zIndex: 1001,
+    zIndex: 9999,
+    ...Platform.select({
+      web: {
+        position: 'fixed',
+      },
+    }),
   },
   drawerHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 20,
-    paddingTop: 50, // Increased top padding
+    paddingTop: 50,
     paddingBottom: 20,
     borderBottomWidth: 1,
     borderBottomColor: "#f0f0f0",
@@ -421,6 +442,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 4,
   },
+  
   altSectionIcon: {
     backgroundColor: "#fff",
   },
@@ -528,4 +550,3 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 })
-
