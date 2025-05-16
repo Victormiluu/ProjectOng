@@ -12,6 +12,9 @@ import EventsScreen from './eventsScreen';
 import AdoteConoscoScreen from './adoteConoscoScreen';
 import VolunteerScreen from './volunteerScreen'; // criação do volutariado
 import PetsAdotadosScreen from './petsAdotadosScreen';
+import EventDetailScreen from './EventDetailScreen';
+import DonateForm from './DonateForm';
+import BlogTips from './BlogTips';
 
 
 
@@ -44,7 +47,9 @@ export default function RootLayout() {
         <Stack.Screen name="Adote" component={AdoteConoscoScreen} />
         <Stack.Screen name="Volunteer" component={VolunteerScreen} /> 
         <Stack.Screen name="Adotados" component={PetsAdotadosScreen} />
-
+        <Stack.Screen name="EventDetail" component={EventDetailScreen} options={{ title: "Detalhes do Evento" }} />
+        <Stack.Screen name="DonateForm" component={DonateForm} />
+        <Stack.Screen name="BlogTips" component={BlogTips} />
       </Stack.Navigator>
     </ThemeProvider>
   );

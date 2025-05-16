@@ -15,6 +15,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient"
 import { useState, useRef, useEffect } from "react"
 import { Platform } from "react-native"
+import { useRouter } from 'expo-router';
 const { width } = Dimensions.get("window")
 const DRAWER_WIDTH = width * 0.7
 
@@ -22,6 +23,7 @@ export default function AnimalShelterScreen({ navigation }: any) {
   const [menuVisible, setMenuVisible] = useState(false)
   const slideAnim = useRef(new Animated.Value(DRAWER_WIDTH)).current
   const fadeAnim = useRef(new Animated.Value(0)).current
+  const router = useRouter();
 
   useEffect(() => {
     const backAction = () => {
@@ -134,8 +136,11 @@ const navigateTo = (screen: string) => {
                 <Text style={styles.menuItemText}>Eventos</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.menuItem} onPress={() => navigateTo("Adotados")}>
-  <Text style={styles.menuItemText}>Pets Adotados</Text>
-</TouchableOpacity>
+                <Text style={styles.menuItemText}>Pets Adotados</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.menuItem} onPress={() => navigateTo("BlogTips")}>
+                <Text style={styles.menuItemText}>Dicas e Blog</Text>
+              </TouchableOpacity>
 
             </View>
           </Animated.View>
@@ -182,7 +187,7 @@ const navigateTo = (screen: string) => {
             Cada contribuição faz a diferença!
           </Text>
 
-          <TouchableOpacity style={styles.modernDonateButton} onPress={() => openLink("https://example.com/donate")}>
+          <TouchableOpacity style={styles.modernDonateButton} onPress={() => router.push("./DonateForm")}>
             <LinearGradient colors={["#ff8c00", "#ff6b00"]} style={styles.donateGradient}>
               <Text style={styles.modernDonateButtonText}>Fazer uma Doação</Text>
             </LinearGradient>

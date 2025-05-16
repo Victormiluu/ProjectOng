@@ -69,7 +69,10 @@ export default function EventsScreen({ navigation }: any) {
                   <Text style={styles.eventLocation}>📍 {event.location}</Text>
                 </View>
                 <Text style={styles.eventDescription}>{event.description}</Text>
-                <TouchableOpacity style={styles.eventButton}>
+                <TouchableOpacity
+                  style={styles.eventButton}
+                  onPress={() => navigation.navigate("EventDetail", { event })}
+                >
                   <LinearGradient colors={["#ff8c00", "#ff6b00"]} style={styles.buttonGradient}>
                     <Text style={styles.eventButtonText}>Participar</Text>
                   </LinearGradient>
