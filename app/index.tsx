@@ -133,6 +133,10 @@ const navigateTo = (screen: string) => {
               <TouchableOpacity style={styles.menuItem} onPress={() => navigateTo("Events")}>
                 <Text style={styles.menuItemText}>Eventos</Text>
               </TouchableOpacity>
+              <TouchableOpacity style={styles.menuItem} onPress={() => navigateTo("Adotados")}>
+  <Text style={styles.menuItemText}>Pets Adotados</Text>
+</TouchableOpacity>
+
             </View>
           </Animated.View>
         </View>
